@@ -1,7 +1,7 @@
 services:
   db:
     image: mysql:8
-    container_name: ministock_db
+    container_name: contenedor_db
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: mini_stock
@@ -27,16 +27,16 @@ services:
     depends_on:
       - backend
 
+  nginx:
+    image: nginx:latest
+    container_name: contenedor_nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - frontend
+      - backend
+
 volumes:
   db_data:
-
-nginx:
-  image: nginx:latest
-  container_name: contenedor_nginx
-  ports:
-    - "80:80"
-  volumes:
-    - ./nginx.conf:/etc/nginx/conf.d/default.conf
-  depends_on:
-    - frontend
-    - backend
