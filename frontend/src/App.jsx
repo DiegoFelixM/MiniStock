@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
-  const API = import.meta.env.REACT_APP_API_URL || 'http://localhost:3000/api/productos';
-
+  const API = import.meta.env.VITE_API_URL || '/api/productos';
   const [productos, setProductos] = useState([]);
   const [mensaje, setMensaje] = useState('');
   const [editingId, setEditingId] = useState(null);
